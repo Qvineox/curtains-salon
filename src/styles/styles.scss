@@ -1,0 +1,42 @@
+@import "colors";
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: 2vh 0;
+
+  background-color: $background-color;
+
+  overflow-x: hidden;
+}
+
+div#root {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2vh 0;
+
+  width: 80vw;
+  max-width: 1200px;
+}
+
+header, div.content, footer {
+  background-color: $content-background-color;
+  border-radius: $border-radius;
+}
+
+header {
+  min-height: 4vh;
+}
+
+div.content {
+  min-height: 40vh;
+
+  #ratings {
+
+  }
+}
+
+footer {
+  min-height: 4vh;
+}

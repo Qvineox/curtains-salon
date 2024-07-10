@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {Fragment, useEffect} from 'react'
+import "./styles/styles.scss"
+import anime from 'animejs';
 
 function App() {
-  const [count, setCount] = useState(0)
+    document.title = 'Салон штор'
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        anime({
+            targets: ["header", "footer"],
+            opacity: [0, 1],
+            autoplay: true,
+            duration: 2000,
+            delay: 200,
+            easing: 'easeInOutExpo'
+        });
+
+        anime({
+            targets: ["#info", "#ratings"],
+            translateX: [250, 0],
+            opacity: [0, 1],
+            autoplay: true,
+            duration: 2000,
+            delay: 200,
+            easing: 'easeInOutExpo'
+        });
+
+        anime({
+            targets: ["#photos"],
+            translateX: [-250, 0],
+            opacity: [0, 1],
+            autoplay: true,
+            duration: 2000,
+            delay: 400,
+            easing: 'easeInOutExpo'
+        });
+    }, []);
+
+    return (
+        <Fragment>
+            <header>
+
+            </header>
+            <div id={'info'} className={'content'}>
+
+            </div>
+            <div id={'photos'} className={'content'}>
+
+            </div>
+            <div id={'ratings'} className={'content'}>
+
+            </div>
+            <footer>
+
+            </footer>
+        </Fragment>
+    )
 }
 
 export default App
