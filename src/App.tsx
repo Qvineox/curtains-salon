@@ -1,6 +1,9 @@
 import {Fragment, useEffect} from 'react'
 import "./styles/styles.scss"
 import anime from 'animejs';
+import Header from "./components/header.tsx";
+import Content from "./components/content.tsx";
+import Footer from "./components/footer.tsx";
 
 function App() {
     document.title = 'Салон штор'
@@ -38,21 +41,9 @@ function App() {
 
     return (
         <Fragment>
-            <header>
-
-            </header>
-            <div id={'info'} className={'content'}>
-
-            </div>
-            <div id={'photos'} className={'content'}>
-
-            </div>
-            <div id={'ratings'} className={'content'}>
-
-            </div>
-            <footer>
-
-            </footer>
+            <Header/>
+            <Content/>
+            <Footer/>
         </Fragment>
     )
 }

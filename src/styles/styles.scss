@@ -1,4 +1,5 @@
 @import "colors";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
   display: flex;
@@ -8,35 +9,152 @@ body {
   background-color: $background-color;
 
   overflow-x: hidden;
+
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+}
+
+h1, h2, h3, p {
+  margin: 0;
 }
 
 div#root {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  gap: 2vh 0;
+  gap: 4vh 0;
 
   width: 80vw;
   max-width: 1200px;
 }
 
-header, div.content, footer {
+header {
+  z-index: 999;
+  position: fixed;
+
+  min-height: 4vh;
+
+  padding: 1.5vh 10vw;
+
+  box-shadow: $box-shadow-heavy;
+  border-radius: $border-radius;
+  background-color: $content-background-color;
+
+  #contact-icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 0 5vw;
+
+    min-width: 100px;
+
+    img.contact-icon {
+      height: 4vh;
+      max-height: 256px;
+
+      opacity: 0.75;
+      transition: ease-in-out 200ms;
+
+      &:hover {
+        cursor: pointer;
+
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.content, footer {
   background-color: $content-background-color;
   border-radius: $border-radius;
+
+  box-shadow: $box-shadow;
 }
 
-header {
-  min-height: 4vh;
-}
+#content-container {
+  margin-top: 10vh;
+  width: 100%;
 
-div.content {
-  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  #ratings {
+  gap: 2vh 0;
 
+  .content {
+    min-height: 10vh;
+    width: 100%;
+    padding: 2vh 4vw 3vh 4vw;
+
+    &#info {
+      display: flex;
+      flex-direction: column;
+
+      align-items: flex-start;
+      max-width: 600px;
+
+      h1 {
+        font-style: italic;
+        font-weight: 800;
+
+        font-size: 2em;
+      }
+
+      h3 {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        gap: 0 1em;
+
+        margin-top: 0.5em;
+
+        img {
+          height: 15vh;
+          border-radius: 7.5vh;
+        }
+
+      }
+    }
+
+    &#photos {
+      border-radius: 15px;
+
+      h2 {
+        margin-bottom: 0.5em;
+      }
+
+      img {
+        width: 100%;
+      }
+
+    }
+
+    #ratings {
+
+    }
   }
 }
 
 footer {
   min-height: 4vh;
+  padding: 1.5vh 10vw;
+
+  margin-bottom: 5vh;
+
+  transition: ease-in-out 200ms;
+
+  &:hover  {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
 }
