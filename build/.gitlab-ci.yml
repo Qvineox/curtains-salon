@@ -86,8 +86,6 @@ trivy image scan:
     FULL_IMAGE_NAME: "$CI_REGISTRY_IMAGE/domain_threat_intel:$CI_COMMIT_REF_SLUG"
   script:
     # подготовка trivy: очистка кэша, обновление базы данных уязвимостей
-    - trivy --version
-    - time trivy image --clear-cache
     - time trivy image --download-db-only --no-progress --cache-dir .trivycache/
 
     # формирование отчета в формате GitLab (не работает в community версии)
