@@ -83,7 +83,7 @@ trivy image scan:
     TRIVY_CACHE_DIR: ".trivycache/"
     #    TRIVY_INSECURE: "true"
 
-    FULL_IMAGE_NAME: "$CI_REGISTRY_IMAGE/domain_threat_intel:$CI_COMMIT_REF_SLUG"
+    FULL_IMAGE_NAME: "$CI_REGISTRY_IMAGE/curtain_salon:$CI_COMMIT_REF_SLUG"
   script:
     # подготовка trivy: очистка кэша, обновление базы данных уязвимостей
     - time trivy image --download-db-only --no-progress --cache-dir .trivycache/
