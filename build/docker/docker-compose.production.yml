@@ -1,0 +1,26 @@
+version: '3.9'
+
+name: curtain_salon_prod
+
+networks:
+  internal:
+    external: false
+  web:
+    external: true
+
+services:
+  hub:
+    image: $IMAGE_TAG
+    container_name: curtain_salon_prod
+    hostname: curtain_salon_prod
+    restart: unless-stopped
+    networks:
+      - web
+      - internal
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.curtain_salon_prod.service=curtain_salon_prod
+      - traefik.http.routers.curtain_salon_prod.rule=Host(`$TRAEFIK_HOST`)
+      - traefik.http.routers.curtain_salon_prod.tls=true
+      - traefik.http.routers.curtain_salon_prod.entrypoints=websec
+      - traefik.http.services.curtain_salon_prod.loadbalancer.server.port=80
