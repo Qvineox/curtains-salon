@@ -6,7 +6,7 @@ import Content from "./components/content.tsx";
 import Footer from "./components/footer.tsx";
 
 function App() {
-    document.title = 'Салон штор'
+    document.title = 'Салон штор.ру'
 
     useEffect(() => {
         anime({
@@ -42,7 +42,13 @@ function App() {
     return (
         <Fragment>
             <Header/>
-            <Content/>
+            {
+                window.innerWidth <= 600 ? <div className={'mobile-content-container'}>
+                    <Content/>
+                </div> : <div className={'desktop-content-container'}>
+                    <Content/>
+                </div>
+            }
             <Footer/>
         </Fragment>
     )
