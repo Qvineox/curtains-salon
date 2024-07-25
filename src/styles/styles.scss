@@ -72,6 +72,8 @@ header {
   border-radius: $border-radius;
 
   box-shadow: $box-shadow;
+
+  user-select: none;
 }
 
 .desktop-content-container {
@@ -111,6 +113,20 @@ header {
       img {
         border-radius: 5px;
       }
+    }
+  }
+
+  #about-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0 1vw;
+
+    #introduction {
+      flex-basis: 70%;
+    }
+
+    #about-us {
+      flex-basis: 30%;
     }
   }
 
@@ -158,6 +174,10 @@ header {
         width: 100%;
       }
     }
+  }
+
+  #advertisement-container {
+    text-align: center;
   }
 }
 
@@ -241,6 +261,8 @@ header {
     #yandex-maps-place {
       height: 900px;
 
+      pointer-events: none;
+
       iframe {
         position: relative;
         width: 100%;
@@ -250,8 +272,6 @@ header {
 }
 
 footer {
-  min-height: 4vh;
-  padding: 1.5vh 10vw;
 
   margin-bottom: 5vh;
 
@@ -260,6 +280,16 @@ footer {
   &:hover {
     transform: scale(1.15);
     cursor: pointer;
+  }
+
+  button {
+    min-height: 4vh;
+    padding: 1.5vh 10vw;
+
+    width: 100%;
+    height: 100%;
+    background-color: $content-background-color;
+    border: none;
   }
 
   h2 {
