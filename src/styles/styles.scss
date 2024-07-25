@@ -25,7 +25,7 @@ div#root {
 
   gap: 4vh 0;
 
-  width: 80vw;
+  width: 90vw;
   max-width: 1200px;
 }
 
@@ -74,6 +74,100 @@ header {
   box-shadow: $box-shadow;
 }
 
+.desktop-content-container {
+  margin-top: 10vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 2vh 0;
+
+  #info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0 1vw;
+
+    #main-info {
+      flex-basis: 25%;
+
+      h1 {
+        font-style: italic;
+        font-weight: 800;
+
+        font-size: 2.5em;
+      }
+    }
+
+    #services-info {
+      flex-basis: 75%;
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: row;
+      gap: 0 1vw;
+
+      img {
+        border-radius: 5px;
+      }
+    }
+  }
+
+  #photos {
+    border-radius: $border-radius;
+
+    h2 {
+      margin-bottom: 0.5em;
+    }
+
+    #photos-container {
+      display: grid;
+      gap: 1vh 1vw;
+
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  #ratings-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    gap: 0 1vw;
+
+    #yandex-maps-ratings {
+      flex-basis: 40%;
+      height: 600px;
+    }
+
+    #yandex-maps-place {
+      flex-basis: 60%;
+
+      iframe {
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.content {
+  min-height: 10vh;
+  width: 100%;
+  padding: 2vh 2vw 3vh 2vw;
+  overflow: hidden;
+}
+
 .mobile-content-container {
   margin-top: 10vh;
   width: 100%;
@@ -118,7 +212,6 @@ header {
           height: 15vh;
           border-radius: 7.5vh;
         }
-
       }
     }
 
@@ -132,12 +225,25 @@ header {
       img {
         width: 100%;
       }
-
     }
 
     #ratings {
       h2 {
         margin-bottom: 0.5rem;
+      }
+    }
+
+    #yandex-maps-ratings {
+      width: 100%;
+      height: 900px;
+    }
+
+    #yandex-maps-place {
+      height: 900px;
+
+      iframe {
+        position: relative;
+        width: 100%;
       }
     }
   }
@@ -162,10 +268,8 @@ footer {
 }
 
 #yandex-maps-ratings {
-  width: 100%;
   overflow: hidden;
   position: relative;
-  height: 900px;
 
   iframe {
     width: 100%;
@@ -218,9 +322,5 @@ footer {
     top: 14px;
   }
 
-  iframe {
-    position:relative;
 
-    width: 100%;
-  }
 }
