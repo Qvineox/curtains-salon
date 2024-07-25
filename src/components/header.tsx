@@ -11,7 +11,9 @@ export default function Header() {
             <a href="https://t.me/salonshtor_ru">
                 <img className={'contact-icon'} src={telegramIcon} alt="telegram_icon"/>
             </a>
-            <img className={'contact-icon'} src={instagramIcon} alt="instagram_icon"/>
+            <a href="https://www.instagram.com/salonshtor.ru">
+                <img className={'contact-icon'} src={instagramIcon} alt="instagram_icon"/>
+            </a>
         </div>
     </header>
 }
