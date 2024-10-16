@@ -139,7 +139,7 @@ deploy to production:
   stage: deploy
   environment:
     name: Production
-    url: https://salon-shtor.qvineox.ru/
+    url: https://www.tendaggio.moscow/
     # todo: add real IP
   script:
     - docker pull $IMAGE_TAG
