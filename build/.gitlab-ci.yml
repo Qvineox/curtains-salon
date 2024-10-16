@@ -129,7 +129,7 @@ deploy to staging:
     - docker pull $IMAGE_TAG
     - docker compose -f build/docker/docker-compose.stage.yml up -d
   tags:
-    - shell
+    - shell-bf16
   only:
     refs:
       - stage
@@ -145,7 +145,7 @@ deploy to production:
     - docker pull $IMAGE_TAG
     - docker compose -f build/docker/docker-compose.production.yml up -d
   tags:
-    - shell
+    - shell-bf16
   only:
     refs:
       - main
