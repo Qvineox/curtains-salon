@@ -140,9 +140,9 @@ push to cloud.ru:
     name: Production
     url: https://www.tendaggio.moscow/
   rules:
-    - if: $CI_COMMIT_BRANCH == "test"
+    - if: $CI_COMMIT_BRANCH == "main"
   needs:
-    - build test docker image
+    - build production docker image
   before_script:
     - export IMAGE_NAME=${CI_REGISTRY_IMAGE}/tendaggio_webpage:${CI_COMMIT_BRANCH}
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
