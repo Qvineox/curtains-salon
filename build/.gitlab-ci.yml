@@ -149,8 +149,8 @@ push to cloud.ru:
     - docker login -u $CLOUDRU_REGISTRY_USER -p $CLOUDRU_REGISTRY_API_KEY tendaggio.cr.cloud.ru
   script:
     - docker pull $IMAGE_NAME
-    - docker tag $IMAGE_NAME domsnail.cr.cloud.ru/tendaggio_webpage:${CI_COMMIT_BRANCH}
-    - docker push domsnail.cr.cloud.ru/tendaggio_webpage:${CI_COMMIT_BRANCH}
+    - docker tag $IMAGE_NAME tendaggio.cr.cloud.ru/tendaggio_webpage:${CI_COMMIT_BRANCH}
+    - docker push tendaggio.cr.cloud.ru/tendaggio_webpage:${CI_COMMIT_BRANCH}
   tags:
     - docker
 
