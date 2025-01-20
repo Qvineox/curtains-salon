@@ -27,7 +27,7 @@ export function Content() {
             opacity: [0, 1],
             autoplay: true,
             duration: 2000,
-            delay: 200,
+            delay: 200 ,
             easing: 'easeInOutExpo'
         });
 

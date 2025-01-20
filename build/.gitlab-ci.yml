@@ -2,13 +2,14 @@ stages:
   - build
   - test
   - deploy
+  - publish
 
 include:
   - template: Security/SAST.gitlab-ci.yml
 
 .registry_setup:
   variables:
-    IMAGE_TAG: $CI_REGISTRY_IMAGE/curtain_salon:$CI_COMMIT_REF_SLUG
+    IMAGE_TAG: $CI_REGISTRY_IMAGE/tendaggio_webpage:$CI_COMMIT_REF_SLUG
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   tags:
@@ -36,7 +37,7 @@ build staging docker image:
   image: docker:25.0.2
   environment:
     name: Stage
-    url: https://salon-shtor.qvineox.ru/
+    url: https://tendaggio-staging.domsnail.ru/
   extends: .registry_setup
   script:
     - docker build . -t $IMAGE_TAG -f ./build/docker/Dockerfile
@@ -52,8 +53,7 @@ build production docker image:
   image: docker:25.0.2
   environment:
     name: Production
-    url: https://salon-shtor.qvineox.ru/
-    # todo: add real IP
+    url: https://www.tendaggio.moscow/
   extends: .registry_setup
   script:
     - docker build . -t $IMAGE_TAG -f ./build/docker/Dockerfile
@@ -83,7 +83,7 @@ trivy image scan:
     TRIVY_CACHE_DIR: ".trivycache/"
     #    TRIVY_INSECURE: "true"
 
-    FULL_IMAGE_NAME: "$CI_REGISTRY_IMAGE/curtain_salon:$CI_COMMIT_REF_SLUG"
+    FULL_IMAGE_NAME: "$CI_REGISTRY_IMAGE/tendaggio_webpage:$CI_COMMIT_REF_SLUG"
   script:
     # подготовка trivy: очистка кэша, обновление базы данных уязвимостей
     - time trivy image --download-db-only --no-progress --cache-dir .trivycache/
@@ -124,7 +124,7 @@ deploy to staging:
   stage: deploy
   environment:
     name: Stage
-    url: https://salon-shtor.qvineox.ru/
+    url: https://tendaggio-staging.domsnail.ru/
   script:
     - docker pull $IMAGE_TAG
     - docker compose -f build/docker/docker-compose.stage.yml up -d
@@ -134,18 +134,23 @@ deploy to staging:
     refs:
       - stage
 
-deploy to production:
-  extends: .registry_setup
-  stage: deploy
+push to cloud.ru:
+  stage: publish
   environment:
     name: Production
-    url: https://salon-shtor.qvineox.ru/
-    # todo: add real IP
+    url: https://www.tendaggio.moscow/
+  rules:
+    - if: $CI_COMMIT_BRANCH == "test"
+  needs:
+    - build test docker image
+  before_script:
+    - export IMAGE_NAME=${CI_REGISTRY_IMAGE}/tendaggio_webpage:${CI_COMMIT_BRANCH}
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker login -u $CLOUDRU_REGISTRY_USER -p $CLOUDRU_REGISTRY_API_KEY tendaggio.cr.cloud.ru
   script:
-    - docker pull $IMAGE_TAG
-    - docker compose -f build/docker/docker-compose.production.yml up -d
+    - docker pull $IMAGE_NAME
+    - docker tag $IMAGE_NAME domsnail.cr.cloud.ru/tendaggio_webpage:${CI_COMMIT_BRANCH}
+    - docker push domsnail.cr.cloud.ru/tendaggio_webpage:${CI_COMMIT_BRANCH}
   tags:
-    - shell
-  only:
-    refs:
-      - main
+    - docker
+
