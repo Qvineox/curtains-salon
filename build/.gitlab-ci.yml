@@ -134,6 +134,23 @@ deploy to staging:
     refs:
       - stage
 
+
+deploy to production:
+  extends: .registry_setup
+  stage: deploy
+  environment:
+    name: Production
+    url: https://www.tendaggio.moscow/
+  script:
+    - docker pull $IMAGE_TAG
+    - docker compose -f build/docker/docker-compose.production.yml up -d
+  tags:
+    - shell-bf16
+  only:
+    refs:
+      - main
+
+
 push to cloud.ru:
   stage: publish
   environment:
