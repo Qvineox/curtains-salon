@@ -8,7 +8,7 @@ h1 {
   font-style: normal;
 }
 
-h2, p, li {
+h2, h3, h4, p, li {
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
 }
@@ -41,6 +41,33 @@ header {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+  }
+
+  #discount {
+    opacity: 0;
+
+    margin-left: 75%;
+    width: 12vw;
+    height: 12vw;
+    padding: 2rem;
+
+    background-color: $color-primary-2;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    transition: .25s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      animation: unset;
+    }
+
+    animation: pulse 4s infinite;
   }
 
   #intro-triangle {
@@ -214,6 +241,10 @@ header {
   }
 }
 
+#team {
+  padding: 2vh 4vw 4vh 4vw;
+}
+
 #studio {
   padding: 2vh 4vw 4vh 4vw;
   height: 100vh;
@@ -265,5 +296,17 @@ header {
 
   button {
 
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }

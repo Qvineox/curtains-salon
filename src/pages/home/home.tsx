@@ -42,6 +42,12 @@ export default function HomePage() {
             opacity: "1",
             delay: anime.stagger(300, {start: 600, easing: "easeInOutCubic"})
         })
+
+        anime({
+            targets: "#discount",
+            opacity: "1",
+            delay: 1200
+        })
     }, []);
 
     const [orderInfo, setOrderInfo] = useState<IOrder>({
@@ -75,7 +81,11 @@ export default function HomePage() {
         />
         <div id="intro" className="section-container">
             <div id={'about'}>
-                <h1>tendaggio</h1>
+                <h1 style={{height: '5rem'}}>tendaggio
+                    <div id={"discount"}>
+                        <h4>-20% на первый заказ</h4>
+                    </div>
+                </h1>
                 <p className={"hint"}>салон дизайнерских штор</p>
                 <ul>
                     <li>римские</li>
