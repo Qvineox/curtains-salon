@@ -170,6 +170,8 @@ header {
 }
 
 #portfolio {
+  height: 100vh;
+
   #portfolio-triangle {
     position: absolute;
 
@@ -187,6 +189,28 @@ header {
     flex-direction: column;
 
     padding: 2vh 4vw;
+  }
+
+  #photos-container {
+    width: 100%;
+
+    img {
+      position: relative;
+
+      height: 40vh;
+      width: 40vh;
+
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+
+      transition: .25s ease-in-out;
+
+      &:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+
+        z-index: 9;
+      }
+    }
   }
 }
 

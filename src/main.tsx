@@ -5,6 +5,7 @@ import Root from "./layouts/root/root.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 
 import "./styles/decals.scss"
+import "./styles/index.scss"
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>

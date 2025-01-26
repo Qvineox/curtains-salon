@@ -1,0 +1,16 @@
+.portfolio_description {
+  padding: 0;
+  overflow-y: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  img {
+    height: 50%;
+    object-fit: cover;
+  }
+
+  p {
+    padding: 2vw;
+  }
+}

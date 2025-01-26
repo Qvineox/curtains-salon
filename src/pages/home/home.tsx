@@ -1,10 +1,18 @@
 import "../../styles/home.scss"
 import {Fragment, useEffect, useState} from "react";
 import imageHomeInterior from '/images/home_interior_612x612.jpg'
+import demo1 from '/images/portfolio/demo1.png'
+import demo2 from '/images/portfolio/demo2.png'
+import demo3 from '/images/portfolio/demo3.png'
 import anime from "animejs";
 import Form from 'react-bootstrap/Form';
 import {Button, FloatingLabel} from "react-bootstrap";
 import {checkOrderInfo, IOrder} from "../../types/order.ts";
+import {
+    IPortfolioOffcanvasProps,
+    PortfolioOffcanvas
+} from "../../components/portfolio-offcanvas/portfolioOffcanvas.tsx";
+
 
 export default function HomePage() {
     useEffect(() => {
@@ -32,7 +40,7 @@ export default function HomePage() {
         anime({
             targets: ['#order-button', "#info-button", "#catalog-button"],
             opacity: "1",
-            delay: anime.stagger(200, {start: 600, easing: "easeInOutCubic"})
+            delay: anime.stagger(300, {start: 600, easing: "easeInOutCubic"})
         })
     }, []);
 
@@ -43,7 +51,28 @@ export default function HomePage() {
         details: "",
     })
 
+    const [portfolioOffcanvasProps, setPortfolioOffcanvasProps] = useState<IPortfolioOffcanvasProps>({
+        show: false,
+        handleClose: () => onPortfolioOffcanvasClose(),
+        title: "",
+        description: "",
+        image: "",
+    })
+
+    const onPortfolioOffcanvasClose = () => {
+        setPortfolioOffcanvasProps(prevState => ({
+            ...prevState,
+            show: false
+        }))
+    }
+
     return <Fragment>
+        <PortfolioOffcanvas show={portfolioOffcanvasProps.show}
+                            handleClose={onPortfolioOffcanvasClose}
+                            title={portfolioOffcanvasProps.title}
+                            description={portfolioOffcanvasProps.description}
+                            image={portfolioOffcanvasProps.image}
+        />
         <div id="intro" className="section-container">
             <div id={'about'}>
                 <h1>tendaggio</h1>
@@ -82,6 +111,50 @@ export default function HomePage() {
                 <header>
                     <h2>портфолио проектов</h2>
                 </header>
+                <div id={"photos-container"}>
+                    <img src={demo1}
+                         onClick={() => {
+                             setPortfolioOffcanvasProps(prevState => ({
+                                 ...prevState,
+                                 show: true,
+                                 image: demo1,
+                                 title: "Тест демо 1",
+                                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque ex sit amet eros volutpat commodo. Etiam elit mi, ultricies non ipsum et, sagittis lacinia sapien. Quisque tempus libero non mi bibendum, et bibendum sapien scelerisque. In velit dolor, imperdiet non nulla ut, vulputate tincidunt est. Phasellus congue quam sapien, ut tempor elit dignissim et. Nullam luctus malesuada eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ullamcorper augue venenatis nisi ullamcorper luctus.\n" +
+                                     "\n" +
+                                     "Nam sed lobortis ipsum. In eu pulvinar lacus. Donec consectetur sodales nisi sit amet vehicula. Duis sollicitudin, eros vel molestie porttitor, dolor ex aliquet ipsum, non mattis leo dolor vel sem. Aliquam rhoncus, sem et vehicula auctor, nisi arcu interdum ligula, ut viverra justo nulla at dolor. Fusce facilisis odio leo, in finibus dolor bibendum a. Integer iaculis sit amet lorem sit amet finibus. Nunc accumsan consequat sem vel maximus. Nulla facilisi. Sed tempus purus id nulla consectetur, eget auctor mauris posuere. Etiam consequat est nulla, vitae tincidunt est faucibus id. Ut quis tellus laoreet, finibus lacus aliquet, lobortis orci. Nunc et mauris ac urna interdum interdum. Maecenas suscipit, est hendrerit euismod blandit, nulla eros rutrum ipsum, ut bibendum ante augue sit amet risus. In fermentum massa id est tincidunt, ut tristique turpis lobortis.",
+                             }))
+                         }}
+                         alt="home_interior_612x612"/>
+
+                    <img style={{right: "20vh", top: "20vh"}}
+                         onClick={() => {
+                             setPortfolioOffcanvasProps(prevState => ({
+                                 ...prevState,
+                                 show: true,
+                                 image: demo2,
+                                 title: "Тест демо 2",
+                                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque ex sit amet eros volutpat commodo. Etiam elit mi, ultricies non ipsum et, sagittis lacinia sapien. Quisque tempus libero non mi bibendum, et bibendum sapien scelerisque. In velit dolor, imperdiet non nulla ut, vulputate tincidunt est. Phasellus congue quam sapien, ut tempor elit dignissim et. Nullam luctus malesuada eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ullamcorper augue venenatis nisi ullamcorper luctus.\n" +
+                                     "\n" +
+                                     "Nam sed lobortis ipsum. In eu pulvinar lacus. Donec consectetur sodales nisi sit amet vehicula. Duis sollicitudin, eros vel molestie porttitor, dolor ex aliquet ipsum, non mattis leo dolor vel sem. Aliquam rhoncus, sem et vehicula auctor, nisi arcu interdum ligula, ut viverra justo nulla at dolor. Fusce facilisis odio leo, in finibus dolor bibendum a. Integer iaculis sit amet lorem sit amet finibus. Nunc accumsan consequat sem vel maximus. Nulla facilisi. Sed tempus purus id nulla consectetur, eget auctor mauris posuere. Etiam consequat est nulla, vitae tincidunt est faucibus id. Ut quis tellus laoreet, finibus lacus aliquet, lobortis orci. Nunc et mauris ac urna interdum interdum. Maecenas suscipit, est hendrerit euismod blandit, nulla eros rutrum ipsum, ut bibendum ante augue sit amet risus. In fermentum massa id est tincidunt, ut tristique turpis lobortis.",
+                             }))
+                         }}
+                         src={demo2} alt="home_interior_612x612"/>
+
+                    <img style={{right: "40vh"}}
+                         onClick={() => {
+                             setPortfolioOffcanvasProps(prevState => ({
+                                 ...prevState,
+                                 show: true,
+                                 image: demo3,
+                                 title: "Тест демо 3",
+                                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque ex sit amet eros volutpat commodo. Etiam elit mi, ultricies non ipsum et, sagittis lacinia sapien. Quisque tempus libero non mi bibendum, et bibendum sapien scelerisque. In velit dolor, imperdiet non nulla ut, vulputate tincidunt est. Phasellus congue quam sapien, ut tempor elit dignissim et. Nullam luctus malesuada eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ullamcorper augue venenatis nisi ullamcorper luctus.\n" +
+                                     "\n" +
+                                     "Nam sed lobortis ipsum. In eu pulvinar lacus. Donec consectetur sodales nisi sit amet vehicula. Duis sollicitudin, eros vel molestie porttitor, dolor ex aliquet ipsum, non mattis leo dolor vel sem. Aliquam rhoncus, sem et vehicula auctor, nisi arcu interdum ligula, ut viverra justo nulla at dolor. Fusce facilisis odio leo, in finibus dolor bibendum a. Integer iaculis sit amet lorem sit amet finibus. Nunc accumsan consequat sem vel maximus. Nulla facilisi. Sed tempus purus id nulla consectetur, eget auctor mauris posuere. Etiam consequat est nulla, vitae tincidunt est faucibus id. Ut quis tellus laoreet, finibus lacus aliquet, lobortis orci. Nunc et mauris ac urna interdum interdum. Maecenas suscipit, est hendrerit euismod blandit, nulla eros rutrum ipsum, ut bibendum ante augue sit amet risus. In fermentum massa id est tincidunt, ut tristique turpis lobortis.",
+                             }))
+                         }}
+                         src={demo3}
+                         alt="home_interior_612x612"/>
+                </div>
             </div>
         </div>
         <div id="options" className="section-container">
